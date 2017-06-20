@@ -115,9 +115,9 @@
                             <button type="button" class="btn btn-success btn-xs">Success</button>
                           </td>
                           <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                            <a href="{{ url('student/detail',['id'=>$member->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="{{ url('student/update',['id'=>$member->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="{{ url('student/delete',['id'=>$member->id]) }}" onclick="if(confirm('确认删除吗?')==false) return false;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                         </tr>
                         @endforeach

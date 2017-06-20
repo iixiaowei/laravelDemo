@@ -93,6 +93,54 @@ class StudentController extends Controller
     }
     
     
+    public function update(Request $request,$id){
+    	$member = Member::find($id);
+    	
+    	if($request->isMethod("POST")){
+    		
+    		$this->validate($request, [
+    				'Member.name'=>'required|min:2|max:20',
+    				'Member.age'=>'required|integer',
+    				'Member.sex'=>'required|integer'
+    		],[
+    				'required'=>':attribute 为必填项',
+    				'min'=>':attribute 长度不符合要求',
+    				'integer'=>':attribute 必须为整数'
+    		],[
+    				'Member.name'=>'姓名',
+    				'Member.age'=>'年龄',
+    				'Member.sex'=>'性别'
+    		]);
+    		
+    		$data = $request->input('Member');
+    		$member->name = $data['name'];
+    		$member->age = $data['age'];
+    		$member->sex = $data['sex'];
+    		
+    		if($member->save()){
+    			return redirect('student/member')->with('success','编辑成功！');
+    		}
+    		
+    	}
+    	
+    	return view('student.update',['member'=>$member]);
+    }
+    
+    public function delete($id){
+    	$member = Member::find($id);
+    	if($member->delete()){
+    		return redirect('student/member')->with('success','删除成功！');
+    	}else{
+    		return redirect()->back()->with('error','删除失败！');
+    	}
+    }
+    
+    
+    public function detail($id){
+    	$member = Member::find($id);
+    	
+    	return view('student/detail',['member'=>$member]);
+    }
     
     public function showProfile(){
         //return view('');

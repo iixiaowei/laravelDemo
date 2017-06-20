@@ -49,17 +49,31 @@
                   <div class="x_content">
                     <br />
                     
-                    @if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-                    
-                    @include('student._form')                    
+                     <div class="row">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ $member->name }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Age <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          {{ $member->age }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div id="gender" class="btn-group" data-toggle="buttons">
+                           {{ $member->sex( $member->sex ) }}
+                             
+                          </div>
+                        </div>
+                      </div>
+                       
+                      <div class="ln_solid"></div>
                     
                   </div>
                 </div>

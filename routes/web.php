@@ -48,6 +48,9 @@ Route::group(['middleware'=>['web']],function(){
 	Route::get('student/test','StudentController@test');
 	Route::get('student/member','StudentController@member');
 	Route::any('student/create','StudentController@create');
+	Route::any('student/update/{id}','StudentController@update');
+	Route::any('student/delete/{id}','StudentController@delete');
+	Route::get('student/detail/{id}','StudentController@detail');
 	
 });
 

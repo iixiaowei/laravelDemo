@@ -59,8 +59,7 @@
 						</div>
 					@endif
                     
-                    @include('student._form')                    
-                    
+                    @include('student._form')
                   </div>
                 </div>
               </div>
