@@ -33,9 +33,25 @@ class StudentController extends Controller
     
     public function member(){
 //     	$members = Member::get();
-    	$members = Member::paginate(2);
+    	$members = Member::paginate(20);
     	
     	return view('student.member',['members'=>$members]);
+    }
+    
+    public function create(Request $request){
+    	if($request->isMethod("POST")){
+    		
+    		$data = $request->input('Member');
+    		
+    		if(Member::create($data)){
+    			return redirect('student/member')->with('success','添加成功！');
+    		}else{
+    			return redirect()->back()->with('error','添加失败！');
+    		}
+    		
+    	}
+    	
+    	return view('student.create');
     }
     
     

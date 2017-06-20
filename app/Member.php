@@ -9,6 +9,8 @@ class Member extends Model{
 	
 	public $timestamps = true;
 	
+	protected $fillable = ['name','age','sex'];
+	
 	protected function getDateFormat(){
 		return time();
 	}

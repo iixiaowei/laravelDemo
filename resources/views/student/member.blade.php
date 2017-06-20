@@ -26,7 +26,23 @@
             </div>
             
             <div class="clearfix"></div>
-
+				
+			@if (Session::get('success'))
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>恭喜、</strong> {{ Session::get('success') }}.
+                  </div>
+			@endif	
+				
+			@if (Session::get('error'))
+			<div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>对不起、</strong> {{ Session::get('error') }}.
+                  </div>
+			@endif	
+				
             <div class="row">
               <div class="col-md-12">
                 <div class="x_panel">
@@ -51,7 +67,9 @@
                   </div>
                   <div class="x_content">
 
-                    <p>Simple table with project listing with progress and editing options</p>
+                    <p>
+                    <a href="{{ url('student/create') }}" class="btn btn-info">添加</a>
+                    Simple table with project listing with progress and editing options</p>
 
                     <!-- start project list -->
                     <table class="table table-striped projects">
@@ -72,7 +90,7 @@
                           <td>
                             <a>{{ $member->name }}</a>
                             <br />
-                            <small>Created {{ date('Y-m-d H:i:s',$member->create_at) }}</small>
+                            <small>Created {{ date('Y-m-d H:i:s',$member->created_at) }}</small>
                           </td>
                           <td>
                             <ul class="list-inline">
