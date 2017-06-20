@@ -48,20 +48,33 @@
                   </div>
                   <div class="x_content">
                     <br />
+                    
+                    @if (count($errors) > 0)
+						<div class="alert alert-danger">
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
+                    
                     <form id="demo-form2" method="post" data-parsley-validate class="form-horizontal form-label-left">
 						{{ csrf_field()}}
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="name" name="Member[name]" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" value="{{ old('Member')['name'] }}" id="name" name="Member[name]" class="form-control col-md-7 col-xs-12">
+                          {{ $errors->first('Member.name') }}
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Age <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="age" name="Member[age]" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" value="{{ old('Member')['age'] }}" id="age" name="Member[age]" class="form-control col-md-7 col-xs-12">
+                          {{ $errors->first('Member.age') }}
                         </div>
                       </div>
                       <div class="form-group">
@@ -82,13 +95,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
+                       
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

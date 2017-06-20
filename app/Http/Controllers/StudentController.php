@@ -40,6 +40,43 @@ class StudentController extends Controller
     
     public function create(Request $request){
     	if($request->isMethod("POST")){
+    		//控制器验证
+    		/* 
+    		$this->validate($request, [
+    				'Member.name'=>'required|min:2|max:20',
+    				'Member.age'=>'required|integer',
+    				'Member.sex'=>'required|integer'
+    		],[
+    				'required'=>':attribute 为必填项',
+    				'min'=>':attribute 长度不符合要求',
+    				'integer'=>':attribute 必须为整数'
+    		],[
+    				'Member.name'=>'姓名',
+    				'Member.age'=>'年龄',
+    				'Member.sex'=>'性别'
+    		]);    		
+    		 */
+    		
+    		//Validator 类验证
+    		$validator = \Validator::make($request->input(), [
+    				'Member.name'=>'required|min:2|max:20',
+    				'Member.age'=>'required|integer',
+    				'Member.sex'=>'required|integer'
+    		],[
+    				'required'=>':attribute 为必填项',
+    				'min'=>':attribute 长度不符合要求',
+    				'integer'=>':attribute 必须为整数'
+    		],[
+    				'Member.name'=>'姓名',
+    				'Member.age'=>'年龄',
+    				'Member.sex'=>'性别'
+    		]);
+    		
+    		if($validator->fails()){
+    			return redirect()->back()->withErrors($validator)->withInput();
+    		}
+    		
+    		
     		
     		$data = $request->input('Member');
     		
