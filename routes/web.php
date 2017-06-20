@@ -42,3 +42,18 @@ Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
     });
 
 });
+
+Route::get('student/test','StudentController@test');
+
+Route::group(['middleware'=>['web']],function(){
+	
+});
+
+
+
+
+
+
+
+
+

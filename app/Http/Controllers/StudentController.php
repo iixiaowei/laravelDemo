@@ -24,6 +24,12 @@ class StudentController extends Controller
         return view('student.index',['name'=>'kevin']);    
     }
     
+    public function test(){
+    	
+    	return view('student.test');
+    }
+    
+    
     public function showProfile(){
         //return view('');
     }
