@@ -87,10 +87,9 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div id="gender" class="btn-group" data-toggle="buttons">
-                            
-                            <input type="radio" name="Member[sex]" value="10" checked> 未知 &nbsp;
-                            <input type="radio" name="Member[sex]" value="20"> 男&nbsp;
-                            <input type="radio" name="Member[sex]" value="30"> 女
+                            @foreach($member->sex() as $key=>$val)
+                            <input type="radio" name="Member[sex]" value="{{ $key }}"> {{ $val }} &nbsp;
+                            @endforeach
                              
                           </div>
                         </div>

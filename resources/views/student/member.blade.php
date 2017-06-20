@@ -109,10 +109,7 @@
                             </ul>
                           </td>
                           <td class="project_progress">
-                            <div class="progress progress_sm">
-                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                            </div>
-                            <small>57% Complete</small>
+                            {{ $member->sex($member->sex) }}
                           </td>
                           <td>
                             <button type="button" class="btn btn-success btn-xs">Success</button>

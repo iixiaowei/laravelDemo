@@ -87,8 +87,9 @@ class StudentController extends Controller
     		}
     		
     	}
+    	$member = new Member();
     	
-    	return view('student.create');
+    	return view('student.create',['member'=>$member]);
     }
     
     
