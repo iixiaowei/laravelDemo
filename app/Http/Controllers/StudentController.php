@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Member;
 
 class StudentController extends Controller
 {
@@ -28,6 +29,15 @@ class StudentController extends Controller
     	
     	return view('student.test');
     }
+    
+    
+    public function member(){
+//     	$members = Member::get();
+    	$members = Member::paginate(2);
+    	
+    	return view('student.member',['members'=>$members]);
+    }
+    
     
     
     public function showProfile(){

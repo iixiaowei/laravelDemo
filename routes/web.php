@@ -44,6 +44,7 @@ Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
 });
 
 Route::get('student/test','StudentController@test');
+Route::get('student/member','StudentController@member');
 
 Route::group(['middleware'=>['web']],function(){
 	
