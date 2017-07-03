@@ -44,6 +44,11 @@ Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
 });
 
 
+Route::any('upload','StudentController@upload');
+Route::any('mail','StudentController@mail');
+Route::any('cache1','StudentController@cache1');
+Route::any('cache2','StudentController@cache2');
+
 Route::group(['middleware'=>['web']],function(){
 	Route::get('student/test','StudentController@test');
 	Route::get('student/member','StudentController@member');
@@ -62,3 +67,7 @@ Route::group(['middleware'=>['web']],function(){
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

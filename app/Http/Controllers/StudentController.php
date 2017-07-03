@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Member;
+use Illuminate\Support\Facades\Storage;
+use Mail;
+use Illuminate\Support\Facades\Cache;
 
 class StudentController extends Controller
 {
 
     public function info(){
-        print_r(get_loaded_extensions());
+//         print_r(get_loaded_extensions());
+		phpinfo();
     }
 
     public function index(){
@@ -142,6 +146,27 @@ class StudentController extends Controller
     	return view('student/detail',['member'=>$member]);
     }
     
+    public function upload(Request $request){
+    	
+    	if($request->isMethod("POST")){
+    		//var_dump($_FILES);
+    		$file = $request->file('source');
+			$originalName = $file->getClientOriginalName();
+			$ext = $file->getClientOriginalExtension();
+			$type = $file->getClientMimeType();
+			$realPath = $file->getRealPath();
+			$saveName1 = date("Y-m-d-H-i-s").'-'.uniqid().'.'.$ext;
+			$bool = Storage::disk('uploads')->put($saveName1,file_get_contents($realPath));
+			
+			if($bool){
+				return redirect('upload')->with('success','上传成功!');
+			}
+    		
+    	}
+    	
+    	return view('student/upload');
+    }    
+    
     public function showProfile(){
         //return view('');
     }
@@ -164,15 +189,25 @@ class StudentController extends Controller
     }
 
     public function maopao(){
-
-      /*
-        $arr = [12,13,18,1,45,11,232,1111,232,232,23,12,22,1,23,3];
+		
+    	$arr = [12,13,18,1,45,11,232,1111,232,232,23,12,22,1,23,3];
+    	
+    	
+    	$name = "kevin";
+    	echo "{$name}";
+    	
+    	
+//     	arsort($arr);
+//     	file_get_contents($filename)
+//     	dd($arr);
+    	
+        /* $arr = [12,13,18,1,45,11,232,1111,232,232,23,12,22,1,23,3];
         $res = $this->arrDesc($arr);
-        dd($res);*/
+        dd($res); */
 
 
 //      echo $_SERVER['PHP_SELF'];
-        echo $_SERVER["HTTP_REFERER"];
+//         echo $_SERVER["HTTP_REFERER"];
 
     }
 
@@ -216,6 +251,50 @@ class StudentController extends Controller
     return $arr;
     }
     
+    public function mail(){
+    	/* Mail::raw("邮件主体测试",function($message){
+    		$message->from("iixiaowei@163.com","iixiaowei");
+    		$message->subject("邮件主体测试");
+    		$message->to("870710460@qq.com");
+    	}); */
+    	
+    	Mail::send("student.mail",["name"=>'kevin'],function($message){
+    		$message->to("870710460@qq.com");
+    		$message->subject("测试邮件");
+    	});
+    	
+    }
+    
+    
+    public function cache1(){
+    	//put()
+    	//Cache::put('key1','val1',10);
+    	
+    	//add()
+//     	$bool = Cache::add('key1','val1',10);
+//     	var_dump($bool);
+
+    	//forever()
+//     	Cache::forever('key3','val3');
+
+    	//has()
+    	if(Cache::has('key1')){
+    		var_dump(Cache::get('key1'));
+    	}else{
+    		echo "no key1";
+    	}
+    	
+    }
+    
+    public function cache2(){
+    	//get()
+//     	$val = Cache::get('key3');
+//     	var_dump($val);
+
+    	//pull()
+    	
+    	//forget()
+    }
 
 
 
